@@ -1,0 +1,465 @@
+:root {
+  --green-header: #1d5c30;
+  --green-top: #62b558;
+  --green-bottom: #2c7a3a;
+  --white: #ffffff;
+  --yellow: #ffd54a;
+  --line: rgba(255, 255, 255, 0.55);
+  --placeholder: rgba(255, 255, 255, 0.65);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  font-family: "Poppins", "Segoe UI", Arial, sans-serif;
+  background: #e9e9e9;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+}
+
+.app {
+  width: 100%;
+  max-width: 420px;
+  min-height: 100vh;
+  background: var(--green-header);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ---------- Header ---------- */
+
+.app-header {
+  background: var(--green-header);
+  padding: 48px 24px 28px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.app-header.header-compact {
+  padding: 28px 24px 20px;
+  text-align: left;
+}
+
+.logo {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.logo.logo-inline {
+  flex-direction: row;
+  gap: 10px;
+}
+
+.logo svg {
+  width: 64px;
+  height: 64px;
+}
+
+.logo-inline svg {
+  width: 34px;
+  height: 34px;
+}
+
+.logo span {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: 0.5px;
+}
+
+.logo-inline span {
+  font-size: 22px;
+}
+
+/* ---------- Body card ---------- */
+
+.app-body {
+  flex: 1;
+  background: linear-gradient(165deg, var(--green-top) 0%, var(--green-bottom) 100%);
+  border-radius: 36px 36px 0 0;
+  padding: 40px 28px 48px;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-body.center {
+  justify-content: flex-start;
+  align-items: stretch;
+}
+
+.intro-text {
+  color: var(--white);
+  text-align: center;
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0 0 36px;
+}
+
+.intro-text.left {
+  text-align: left;
+}
+
+/* ---------- Form fields ---------- */
+
+.field {
+  margin-bottom: 26px;
+}
+
+.field label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  color: var(--white);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.field label.accent {
+  color: var(--yellow);
+}
+
+.field input,
+.field select {
+  width: 100%;
+  border: none;
+  background: transparent;
+  border-bottom: 1px solid var(--line);
+  padding: 4px 2px 8px;
+  font-size: 14px;
+  color: var(--white);
+  outline: none;
+  font-family: inherit;
+}
+
+.field input::placeholder {
+  color: var(--placeholder);
+}
+
+.field select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: rgba(0, 0, 0, 0.12);
+  border-bottom: none;
+  border-radius: 22px;
+  padding: 12px 16px;
+  font-weight: 600;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'><path d='M7 10l5 5 5-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 16px;
+}
+
+.field select option {
+  color: #222;
+}
+
+.forgot-link {
+  display: inline-block;
+  margin-top: -12px;
+  font-size: 12px;
+  color: var(--white);
+  text-decoration: underline;
+}
+
+/* ---------- Buttons ---------- */
+
+.btn {
+  display: block;
+  width: 100%;
+  text-align: center;
+  background: transparent;
+  border: 1.5px solid var(--white);
+  color: var(--white);
+  border-radius: 30px;
+  padding: 15px 20px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: inherit;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.btn:hover {
+  background: var(--white);
+  color: var(--green-bottom);
+}
+
+.btn:active {
+  transform: scale(0.99);
+}
+
+.spacer {
+  flex: 1;
+}
+
+.bottom-area {
+  margin-top: auto;
+  padding-top: 24px;
+}
+
+.secondary-link {
+  display: block;
+  text-align: center;
+  margin-top: 16px;
+  font-size: 13px;
+  color: var(--white);
+  text-decoration: underline;
+}
+
+.message-text {
+  color: var(--white);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.6;
+  margin: 8px 0 40px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn {
+    transition: none;
+  }
+}
+
+/* ---------- Home menu ---------- */
+
+.menu-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.menu-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 18px;
+  padding: 18px 18px;
+  text-decoration: none;
+  color: var(--white);
+  transition: background 0.2s ease;
+}
+
+.menu-card:hover {
+  background: rgba(255, 255, 255, 0.24);
+}
+
+.menu-card .menu-icon {
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+}
+
+.menu-card .menu-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.menu-card .menu-text {
+  flex: 1;
+}
+
+.menu-card .menu-title {
+  display: block;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.menu-card .menu-sub {
+  display: block;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 2px;
+}
+
+.menu-card .chevron {
+  font-size: 18px;
+  opacity: 0.8;
+}
+
+.logout-link {
+  display: block;
+  text-align: center;
+  margin-top: 28px;
+  font-size: 13px;
+  color: var(--white);
+  opacity: 0.85;
+  text-decoration: underline;
+}
+
+/* ---------- Checkbox group (pré-triagem) ---------- */
+
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--white);
+}
+
+.checkbox-item input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 1.5px solid var(--white);
+  border-radius: 5px;
+  flex-shrink: 0;
+  position: relative;
+  cursor: pointer;
+}
+
+.checkbox-item input[type="checkbox"]:checked {
+  background: var(--white);
+}
+
+.checkbox-item input[type="checkbox"]:checked::after {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 2px;
+  width: 5px;
+  height: 10px;
+  border: solid var(--green-bottom);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.field textarea {
+  width: 100%;
+  border: none;
+  background: rgba(0, 0, 0, 0.12);
+  border-radius: 14px;
+  padding: 12px 14px;
+  font-size: 14px;
+  color: var(--white);
+  outline: none;
+  font-family: inherit;
+  resize: vertical;
+  min-height: 80px;
+}
+
+.field textarea::placeholder {
+  color: var(--placeholder);
+}
+
+/* ---------- Time slots (agendamento) ---------- */
+
+.slots {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.slot-btn {
+  border: 1.5px solid var(--white);
+  background: transparent;
+  color: var(--white);
+  border-radius: 20px;
+  padding: 10px 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.slot-btn.selected {
+  background: var(--white);
+  color: var(--green-bottom);
+}
+
+/* ---------- Summary / read-only info (confirmação, perfil) ---------- */
+
+.summary-box {
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: 16px;
+  padding: 18px 20px;
+  margin: 0 0 32px;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--white);
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.summary-row:last-child {
+  border-bottom: none;
+}
+
+.summary-row .label {
+  opacity: 0.8;
+}
+
+.summary-row .value {
+  font-weight: 600;
+  text-align: right;
+}
+
+.info-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.info-row {
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.info-row .label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  color: rgba(255, 255, 255, 0.75);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.info-row .value {
+  display: block;
+  font-size: 14px;
+  color: var(--white);
+  font-weight: 600;
+}
+
+.danger-link {
+  display: block;
+  text-align: center;
+  margin-top: 18px;
+  font-size: 13px;
+  color: #ffb4b4;
+  text-decoration: underline;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  width: 100%;
+}

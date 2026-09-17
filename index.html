@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="app-header">
+      <div class="logo">
+        <span class="logo-icon"></span>
+        <span>nome</span>
+      </div>
+    </header>
+ 
+    <main class="app-body center">
+      <p class="intro-text">Faça seu login</p>
+ 
+      <form id="login-form">
+        <div class="field">
+          <label for="cpf">CPF</label>
+          <input type="text" id="cpf" name="cpf" placeholder="" required />
+        </div>
+ 
+        <div class="field">
+          <label for="senha">Senha</label>
+          <input type="password" id="senha" name="senha" placeholder="" required />
+          <a class="forgot-link" href="recuperar-senha.html">esqueceu a senha?</a>
+        </div>
+ 
+        <div class="spacer"></div>
+ 
+        <div class="bottom-area">
+          <button type="submit" class="btn">Login</button>
+          <a class="secondary-link" href="cadastro.html">criar conta uma conta</a>
+        </div>
+      </form>
+    </main>
+  </div>
+ 
+  <script src="app.js"></script>
+</body>
+</html>
+ 

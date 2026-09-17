@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meu perfil</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="app-header header-compact">
+      <div class="logo logo-inline">
+        <span class="logo-icon"></span>
+        <span>nome</span>
+      </div>
+    </header>
+
+    <main class="app-body">
+      <p class="intro-text left">Seus dados</p>
+
+      <div class="info-list" id="perfil-info">
+        <div class="info-row"><span class="label">Nome completo</span><span class="value" id="info-nome">—</span></div>
+        <div class="info-row"><span class="label">CPF</span><span class="value" id="info-cpf">—</span></div>
+        <div class="info-row"><span class="label">Telefone</span><span class="value" id="info-telefone">—</span></div>
+        <div class="info-row"><span class="label">Email</span><span class="value" id="info-email">—</span></div>
+        <div class="info-row"><span class="label">Cidade</span><span class="value" id="info-cidade">—</span></div>
+        <div class="info-row"><span class="label">Tipo de plano</span><span class="value" id="info-plano">—</span></div>
+      </div>
+
+      <div class="bottom-area">
+        <a href="perfil-editar.html" class="btn">editar dados</a>
+        <button type="button" class="danger-link" id="btn-excluir">excluir cadastro</button>
+      </div>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

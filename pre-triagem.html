@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pré-triagem</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="app-header header-compact">
+      <div class="logo logo-inline">
+        <span class="logo-icon"></span>
+        <span>nome</span>
+      </div>
+    </header>
+
+    <main class="app-body">
+      <p class="intro-text left">Conte como você está se sentindo</p>
+
+      <form id="triagem-form">
+        <div class="field">
+          <label for="motivo">Motivo da consulta</label>
+          <input type="text" id="motivo" name="motivo" required />
+        </div>
+
+        <div class="field">
+          <label>Sintomas</label>
+          <div class="checkbox-group">
+            <label class="checkbox-item"><input type="checkbox" name="sintomas" value="febre" /> Febre</label>
+            <label class="checkbox-item"><input type="checkbox" name="sintomas" value="tosse" /> Tosse</label>
+            <label class="checkbox-item"><input type="checkbox" name="sintomas" value="dor_cabeca" /> Dor de cabeça</label>
+            <label class="checkbox-item"><input type="checkbox" name="sintomas" value="dor_corpo" /> Dor no corpo</label>
+            <label class="checkbox-item"><input type="checkbox" name="sintomas" value="falta_ar" /> Falta de ar</label>
+            <label class="checkbox-item"><input type="checkbox" name="sintomas" value="nausea" /> Náusea</label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="urgencia">Nível de urgência</label>
+          <select id="urgencia" name="urgencia" required>
+            <option value="" disabled selected>Selecione</option>
+            <option value="baixa">Baixa</option>
+            <option value="media">Média</option>
+            <option value="alta">Alta</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="observacoes">Observações</label>
+          <textarea id="observacoes" name="observacoes" placeholder="Detalhes adicionais, se houver"></textarea>
+        </div>
+
+        <div class="bottom-area">
+          <button type="submit" class="btn">continuar para agendamento</button>
+        </div>
+      </form>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
