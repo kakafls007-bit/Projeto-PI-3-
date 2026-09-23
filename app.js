@@ -11,6 +11,25 @@ document.querySelectorAll(".logo-icon").forEach((el) => {
   el.innerHTML = LOGO_SVG;
 });
 
+// Ícone de seta para o botão "voltar"
+const BACK_SVG = `
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M15 18l-6-6 6-6"/>
+</svg>`;
+
+document.querySelectorAll(".back-btn").forEach((el) => {
+  el.innerHTML = BACK_SVG;
+  el.addEventListener("click", (e) => {
+    e.preventDefault();
+    const fallback = el.getAttribute("data-fallback") || "home.html";
+    if (document.referrer && document.referrer.includes(window.location.host)) {
+      history.back();
+    } else {
+      window.location.href = fallback;
+    }
+  });
+});
+
 // Formulário de login
 const loginForm = document.getElementById("login-form");
 if (loginForm) {
@@ -100,31 +119,97 @@ if (agendamentoForm) {
       return;
     }
     const dados = {
+      id: Date.now(),
       especialidade: document.getElementById("especialidade").value,
       data: document.getElementById("data").value,
       horario: horarioInput.value,
     };
     // TODO: integrar com a API de agendamento
     console.log("Agendamento:", dados);
+    const consultas = JSON.parse(localStorage.getItem("consultas") || "[]");
+    consultas.push(dados);
+    localStorage.setItem("consultas", JSON.stringify(consultas));
     sessionStorage.setItem("agendamento", JSON.stringify(dados));
     window.location.href = "agendamento-confirmado.html";
   });
 }
 
+const ESPECIALIDADES = {
+  clinico_geral: "Clínico geral",
+  pediatria: "Pediatria",
+  cardiologia: "Cardiologia",
+  dermatologia: "Dermatologia",
+};
+
 // Resumo do agendamento confirmado
 const resumoAgendamento = document.getElementById("resumo-agendamento");
 if (resumoAgendamento) {
   const dados = JSON.parse(sessionStorage.getItem("agendamento") || "{}");
-  const especialidades = {
-    clinico_geral: "Clínico geral",
-    pediatria: "Pediatria",
-    cardiologia: "Cardiologia",
-    dermatologia: "Dermatologia",
-  };
   document.getElementById("resumo-especialidade").textContent =
-    especialidades[dados.especialidade] || "—";
+    ESPECIALIDADES[dados.especialidade] || "—";
   document.getElementById("resumo-data").textContent = dados.data || "—";
   document.getElementById("resumo-horario").textContent = dados.horario || "—";
+}
+
+// Minhas consultas (histórico e próximas)
+const tabsWrap = document.getElementById("consultas-tabs");
+if (tabsWrap) {
+  function formatarData(iso) {
+    if (!iso) return "—";
+    const [ano, mes, dia] = iso.split("-");
+    return `${dia}/${mes}/${ano}`;
+  }
+
+  function renderLista(container, lista, status) {
+    if (!lista.length) {
+      container.innerHTML = `<p class="empty-state">${
+        status === "agendada"
+          ? "Você não tem consultas marcadas."
+          : "Ainda não há consultas realizadas."
+      }</p>`;
+      return;
+    }
+    container.innerHTML = lista
+      .map(
+        (c) => `
+      <div class="consulta-card">
+        <div class="consulta-top">
+          <span class="consulta-especialidade">${
+            ESPECIALIDADES[c.especialidade] || c.especialidade
+          }</span>
+          <span class="consulta-status ${status}">${
+          status === "agendada" ? "agendada" : "realizada"
+        }</span>
+        </div>
+        <div class="consulta-data">${formatarData(c.data)} às ${c.horario || "—"}</div>
+      </div>`
+      )
+      .join("");
+  }
+
+  const consultas = JSON.parse(localStorage.getItem("consultas") || "[]");
+  const hoje = new Date().toISOString().slice(0, 10);
+  const proximas = consultas
+    .filter((c) => c.data >= hoje)
+    .sort((a, b) => a.data.localeCompare(b.data));
+  const historico = consultas
+    .filter((c) => c.data < hoje)
+    .sort((a, b) => b.data.localeCompare(a.data));
+
+  renderLista(document.getElementById("lista-proximas"), proximas, "agendada");
+  renderLista(document.getElementById("lista-historico"), historico, "realizada");
+
+  const tabButtons = tabsWrap.querySelectorAll(".tab-btn");
+  tabButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      tabButtons.forEach((b) => b.classList.remove("active"));
+      document
+        .querySelectorAll(".tab-panel")
+        .forEach((p) => p.classList.remove("active"));
+      btn.classList.add("active");
+      document.getElementById(btn.dataset.tab).classList.add("active");
+    });
+  });
 }
 
 // Tela de perfil (leitura dos dados salvos localmente)
